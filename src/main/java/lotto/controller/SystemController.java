@@ -13,7 +13,6 @@ public class SystemController {
     private final Inquiry INQUIRY = new Inquiry();
 
     public void store() {
-
         // 구매금 입력
         buyLotto();
 
@@ -33,8 +32,8 @@ public class SystemController {
     private void buyLotto() {
         // outputView 적용
         System.out.println(MESSAGE.INPUT_MONEY.getView());
-        INQUIRY.result(INPUT_VIEW.inputPay());
-        System.out.printf("%n" + INPUT_VIEW.getTickets() + "개를 구매했습니다." + "%n");
+        INPUT_VIEW.inputPay();
+        OUTPUT_VIEW.printTickets(INPUT_VIEW.getTickets());
     }
 
     private void userLotto() {
@@ -53,8 +52,9 @@ public class SystemController {
     }
 
     private void result() {
-
-
+        INQUIRY.result(INPUT_VIEW.getLottoNumbers(), INPUT_VIEW.getBonusNumber(), MAKE_USER_LOTTO.getUserLottos());
+        OUTPUT_VIEW.printPrizeResult(INQUIRY.getPrizeResult());
+        OUTPUT_VIEW.printTotalRate(INQUIRY.getTotalPrize(), INPUT_VIEW.getPay());
     }
 
 }
