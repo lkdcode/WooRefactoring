@@ -13,35 +13,43 @@ public class InputView {
     private final int MIN_DIGIT = 1;
     private final int UNIT_PRICE = 1000;
     private List<Integer> lottoNumbers = new ArrayList<>();
+    private int pay;
+    private int bonusNumber;
     private int tickets;
 
     // 유저에게 로또 번호를 입력 받는 메소드
-    public List<Integer> inputLottoNumbers() {
+    public void inputLottoNumbers() {
         String[] intputLottoNumbers = readLine().split(",");
         makeLottoNumbers(intputLottoNumbers);
         Lotto lotto = new Lotto(lottoNumbers);
-        return lotto.getNumbers();
+        lottoNumbers = lotto.getNumbers();
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers;
     }
 
     // 유저에게 보너스 번호를 입력 받는 메소드
-    public int inputBonusNumber() {
+    public void inputBonusNumber() {
         try {
-            int bonusNumber = Integer.parseInt(readLine());
+            bonusNumber = Integer.parseInt(readLine());
             validateBonusNumber(bonusNumber);
-            return bonusNumber;
         } catch (NumberFormatException e) {
             System.out.println(MESSAGE.ERROR_PAY.getView());
             throw new IllegalArgumentException();
         }
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     // 유저에게 로또 구매금을 입력 받는 메소드
-    public int inputPay() {
+    public void inputPay() {
         try {
-            int pay = Integer.parseInt(readLine());
+            pay = Integer.parseInt(readLine());
             validatePay(pay);
             this.tickets = pay / UNIT_PRICE;
-            return pay;
         } catch (NumberFormatException e) {
             System.out.println(MESSAGE.ERROR_PAY.getView());
             throw new IllegalArgumentException();
@@ -50,6 +58,10 @@ public class InputView {
 
     public int getTickets() {
         return tickets;
+    }
+
+    public int getPay() {
+        return pay;
     }
 
     private void validatePay(int pay) {
