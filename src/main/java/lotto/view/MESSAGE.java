@@ -2,6 +2,7 @@ package lotto.view;
 
 //✨feat : 메시지 출력 이넘 클래스
 public enum MESSAGE {
+    // 이넘 분리화
     INPUT_MONEY("구입금액을 입력해주세요."),
     TICKETS("개를 구매했습니다."),
     INPUT_NUMBERS("당첨 번호를 입력해주세요."),

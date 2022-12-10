@@ -10,6 +10,7 @@ public class Inquiry {
     private List<List<Integer>> userLottos = new ArrayList<>();
     private int bonusNumber;
     private int[] prizeResult = new int[5];
+    // {0,0,0,0,0}
     private long totalPrize;
 
     public void result(List<Integer> lotto, int bonusNumber, List<List<Integer>> userLottos) {

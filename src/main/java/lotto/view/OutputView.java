@@ -1,10 +1,13 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
+// 3자릿 수 마다 쉼표 추가
 public class OutputView {
     private final String EA = "개";
     private final String RATE = "%%입니다.";
+    private final DecimalFormat PRIZE_FORMAT = new DecimalFormat("###,###");
 
     public void printTickets(int tickets) {
         System.out.printf("%n" + tickets + MESSAGE.TICKETS.getView() + "%n");
@@ -35,7 +38,9 @@ public class OutputView {
     }
 
     public void printTotalRate(long totalPrize, int pay) {
+        // 소수점 둘째자리 반올림 추가
+        
         double rate = ((double) totalPrize / (double) pay) * 100;
-        System.out.printf(MESSAGE.TOTAL_RATE.getView() + rate + RATE);
+        System.out.printf(MESSAGE.TOTAL_RATE.getView() + PRIZE_FORMAT.format(rate) + RATE);
     }
 }
