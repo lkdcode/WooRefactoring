@@ -1,16 +1,19 @@
 package bridge.controller;
 
 /**
- *  메인 컨트롤러
+ * 메인 컨트롤러
  */
 
+import bridge.model.BridgeGame;
 import bridge.view.MESSAGE;
 
 public class SystemController {
+    private final BridgeGame BRIDGEGAME = new BridgeGame();
+    private boolean moveResult;
 
     public void bridgeGame() {
         // 다리 생성
-        makeBridge();
+        bridge();
 
         // 이동 선택
         choiceMove();
@@ -18,29 +21,37 @@ public class SystemController {
         // 이동 결과 출력
         viewBridge();
 
-        //
+        // 재시도, 종료 여부
         choiceCommand();
+
         // 최종 결과
         result();
     }
 
     /**
      * 다리 생성하는 역할
-
      */
-    private void makeBridge() {
+    private void bridge() {
         MESSAGE.START.print();
         MESSAGE.INPUT_BRIDGE_SIZE.print();
-        int bridgeSize = InputView.getInstance().readBridgeSize();
-        System.out.println(bridgeSize);
+        int size = InputView.getInstance().readBridgeSize();
+        BRIDGEGAME.move(size);
     }
+
     /**
-     * 다리 생성하는 역할
+     * 건널 다리를 선택
      */
     private void choiceMove() {
         MESSAGE.INPUT_MOVE.print();
         String move = InputView.getInstance().readMoving();
-        System.out.println(move);
+        moveResult(move);
+    }
+
+    private void moveResult(String move) {
+        moveResult = BRIDGEGAME.move(move);
+        if (moveResult) {
+            choiceMove();
+        }
     }
 
     private void viewBridge() {
@@ -49,6 +60,7 @@ public class SystemController {
 
     private void choiceCommand() {
         MESSAGE.INPTU_COMMAND.print();
+        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ음?");
         String command = InputView.getInstance().readGameCommand();
         System.out.println(command);
     }
@@ -58,4 +70,5 @@ public class SystemController {
         MESSAGE.SUCCESS.print();
         MESSAGE.TOTAL_TRY.print();
     }
+
 }
