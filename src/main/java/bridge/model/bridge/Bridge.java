@@ -1,16 +1,13 @@
-package bridge.model;
+package bridge.model.bridge;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MakeBridge {
+public class Bridge {
     private final BridgeRandomNumberGenerator BRIDGE_RANDOM_NUMBER_GENERATOR = new BridgeRandomNumberGenerator();
     private final BridgeMaker BRIDGE_MAKER = new BridgeMaker(BRIDGE_RANDOM_NUMBER_GENERATOR);
-    private List<String> bridge = new ArrayList<>();
 
     public List<String> makeBridge(int size) {
-        bridge = BRIDGE_MAKER.makeBridge(size);
-        return bridge;
+        return BRIDGE_MAKER.makeBridge(size);
     }
 
 }

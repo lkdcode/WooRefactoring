@@ -60,11 +60,15 @@ public class ValidateInput {
             this.move = inputMove;
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE.MOVE.getView());
-            InputView.getInstance().readMoving();
+            InputView.getInstance().readMove();
         }
         return move;
     }
 
+    /*
+    *  "U" "D" 을 입력
+    *
+    * */
     private void validateInputMoving(String inputMove) throws IllegalArgumentException {
         if (!(inputMove.equals(UP) || inputMove.equals(DOWN))) {
             throw new IllegalArgumentException();

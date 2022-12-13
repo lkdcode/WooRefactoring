@@ -1,7 +1,6 @@
-package bridge.model;
+package bridge.model.bridge;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,10 +22,12 @@ public class BridgeMaker {
     public List<String> makeBridge(int size) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            result.add(String.valueOf(bridgeNumberGenerator.generate()));
+            String bridge = "U";
+            if (bridgeNumberGenerator.generate() == 0) {
+                bridge = "D";
+            }
+            result.add(bridge);
         }
-        Collections.replaceAll(result, "1", "U");
-        Collections.replaceAll(result, "0", "D");
         return result;
     }
 }
